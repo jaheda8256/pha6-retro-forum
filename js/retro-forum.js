@@ -12,7 +12,7 @@ const displayRetro = posts =>{
     const postContainer = document.getElementById('post-container');
 
     posts.forEach(post =>{
-        console.log(post);
+        // console.log(post);
         // 2 create a div
         const postCard = document.createElement('div');
         postCard.classList = `card card-compact w-96 bg-base-100 shadow-xl p-4 rounded-3xl`;
@@ -42,9 +42,72 @@ const displayRetro = posts =>{
     })
 }
 
-
-
-
-
-
 retroForum();
+
+// discuss ................................
+const loadDiscuss = async() =>{
+    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+    const data = await res.json();
+    const allPosts = data.posts
+    // console.log(allPosts);
+    displayAllPost(allPosts);
+}
+
+const displayAllPost = allPosts =>{
+
+const allPostContainer = document.getElementById('allPosts-container');
+
+ allPosts.forEach(allPost =>{
+    console.log(allPost);
+    // create a div
+   const allPostCard = document.createElement('div');
+   allPostCard.classList = `card card-side bg-[#F3F3F5] shadow-xl`;
+//  set inner html
+   allPostCard.innerHTML = `
+   
+   <div class="lg:p-5 p-1">
+      <div class="indicator">
+ <span class="indicator-item badge badge-secondary"></span> 
+            <div class="grid w-14 lg:w-32 h-14 lg:h-32 bg-base-300 place-items-center">
+            <img class="rounded-xl" src="${allPost.image}" alt="post" />
+            </div>
+   </div>
+        </div>
+        <!-- indicator end -->
+      <div class="card-body">
+         <div class="flex lg:mr-20">
+          <p># ${allPost.category}</p>
+          <p>Author: ${allPost.author.name}</p>
+         </div>
+        <h2 class="text-lg font-bold">${allPost.title}</h2>
+        <p>${allPost.description}</p>
+        <br>
+       <hr class="w-52 lg:w-[500px]">
+        <div class="flex mr-14 gap-10 mt-4">
+             <div class="flex gap-1 lg:gap-3">
+              <img src="./images/mss.png" alt="">
+              <p>${allPost.comment_count}</p>
+             </div>
+             <div class="flex gap-1 lg:gap-3">
+              <img src="./images/eye.png" alt="">
+              <p>${allPost.view_count}</p>
+             </div>
+             <div class="flex gap-1 lg:gap-3">
+              <img src="./images/clock.png" alt="">
+              <p>${allPost.posted_time}</p>
+             </div>
+        </div>
+        <div class="card-actions justify-end mr-10 lg:mr-1">
+          <button class="btn btn-ghost btn-circle flex justify-center items-center" data-tip="add">
+              <img src="./images/email 1.png" alt="">
+        </div>
+      </div>
+   `;
+// append child
+allPostContainer.appendChild(allPostCard);
+
+ });
+}
+
+loadDiscuss();
+

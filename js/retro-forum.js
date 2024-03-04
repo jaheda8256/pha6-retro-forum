@@ -111,41 +111,20 @@ allPostContainer.innerHTML = '';
 allPostContainer.appendChild(allPostCard);
 
 
-
-
-
-// create div
-const allBtn = document.getElementsByClassName('add-btn');
-for(const btn of allBtn){
-  btn.addEventListener('click',(event) =>{
-   const title = event.target.parentNode.parentNode.parentNode.childNodes[3].innerText;
-// const titleVw = event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[3].childNodes[3].innerText;
-
-// const allTitle = document.getElementById('all-title');
-// const div = document.createComment('div');
-// const h2 = document.createElement('h2');
-// h2.classList =`text-lg font-bold`;
-// const p = document.createElement('p');
-// h2.innerText = title;
-// p.innerText = titleVw;
-// div.appendChild(h2);
-// div.appendChild(p);
-// allTitle.appendChild(div);
-
-    console.log(event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[3].childNodes[3].innerText);
+// const allBtn = document.getElementsByClassName('add-btn');
 
   })
 }
 
- });
-}
 
 
 
 const loadDiscussCategory = async(searchText) =>{
+    document.getElementById('loading-spinner').classList.remove("hidden");
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     console.log(data);
+    document.getElementById('loading-spinner').classList.add("hidden");
     displayAllPost(data.posts);
 }
 
@@ -158,6 +137,7 @@ if(value){
     loadDiscussCategory(value);
 
 }
+
 else{
 
     alert('please a valid letter');

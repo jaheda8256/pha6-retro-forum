@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 const retroForum = async() =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
@@ -50,21 +43,21 @@ const displayRetro = posts =>{
     })
 }
 
-retroForum();
+
 
 // discuss ................................
 const loadDiscuss = async() =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
     const data = await res.json();
-    const allPosts = data.posts
+    const allPosts = data.posts;
     // console.log(allPosts);
     displayAllPost(allPosts);
 }
 
 const displayAllPost = allPosts =>{
-
+console.log(allPosts);
 const allPostContainer = document.getElementById('allPosts-container');
-
+allPostContainer.innerHTML = '';
 
  allPosts.forEach(allPost =>{
     // console.log(allPost);
@@ -108,7 +101,7 @@ const allPostContainer = document.getElementById('allPosts-container');
              </div>
         </div>
         <div class="card-actions justify-end mr-10 lg:mr-1">
-          <button class="add-btn btn btn-ghost btn-circle flex justify-center items-center" data-tip="add">
+          <button  class="add-btn btn btn-ghost btn-circle flex justify-center items-center" data-tip="add">
               <img src="./images/email 1.png" alt="">
         </div>
       </div>
@@ -139,7 +132,7 @@ for(const btn of allBtn){
 // div.appendChild(p);
 // allTitle.appendChild(div);
 
-    // console.log(event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[3].childNodes[3].innerText);
+    console.log(event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[3].childNodes[3].innerText);
 
   })
 }
@@ -147,6 +140,35 @@ for(const btn of allBtn){
  });
 }
 
-loadDiscuss();
 
+
+const loadDiscussCategory = async(searchText) =>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+    const data = await res.json();
+    console.log(data);
+    displayAllPost(data.posts);
+}
+
+
+
+const handleSearch = () =>{
+const value = document.getElementById('search-box').value;
+if(value){
+
+    loadDiscussCategory(value);
+
+}
+else{
+
+    alert('please a valid letter');
+}
+}
+
+
+
+
+
+retroForum();
+loadDiscuss();
+// loadDiscussCategory();
 

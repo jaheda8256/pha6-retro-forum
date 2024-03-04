@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 const retroForum = async() =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
@@ -57,17 +65,19 @@ const displayAllPost = allPosts =>{
 
 const allPostContainer = document.getElementById('allPosts-container');
 
+
  allPosts.forEach(allPost =>{
-    console.log(allPost);
+    // console.log(allPost);
     // create a div
    const allPostCard = document.createElement('div');
    allPostCard.classList = `card card-side bg-[#F3F3F5] shadow-xl`;
 //  set inner html
+
    allPostCard.innerHTML = `
    
    <div class="lg:p-5 p-1">
       <div class="indicator">
- <span class="indicator-item badge badge-secondary"></span> 
+ <span class="indicator-item badge ${allPost.isActive?"bg-green-500":"bg-red-500"}"></span> 
             <div class="grid w-14 lg:w-32 h-14 lg:h-32 bg-base-300 place-items-center">
             <img class="rounded-xl" src="${allPost.image}" alt="post" />
             </div>
@@ -98,16 +108,45 @@ const allPostContainer = document.getElementById('allPosts-container');
              </div>
         </div>
         <div class="card-actions justify-end mr-10 lg:mr-1">
-          <button class="btn btn-ghost btn-circle flex justify-center items-center" data-tip="add">
+          <button class="add-btn btn btn-ghost btn-circle flex justify-center items-center" data-tip="add">
               <img src="./images/email 1.png" alt="">
         </div>
       </div>
    `;
+  
 // append child
 allPostContainer.appendChild(allPostCard);
+
+
+
+
+
+// create div
+const allBtn = document.getElementsByClassName('add-btn');
+for(const btn of allBtn){
+  btn.addEventListener('click',(event) =>{
+   const title = event.target.parentNode.parentNode.parentNode.childNodes[3].innerText;
+// const titleVw = event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[3].childNodes[3].innerText;
+
+// const allTitle = document.getElementById('all-title');
+// const div = document.createComment('div');
+// const h2 = document.createElement('h2');
+// h2.classList =`text-lg font-bold`;
+// const p = document.createElement('p');
+// h2.innerText = title;
+// p.innerText = titleVw;
+// div.appendChild(h2);
+// div.appendChild(p);
+// allTitle.appendChild(div);
+
+    // console.log(event.target.parentNode.parentNode.parentNode.childNodes[11].childNodes[3].childNodes[3].innerText);
+
+  })
+}
 
  });
 }
 
 loadDiscuss();
+
 

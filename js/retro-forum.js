@@ -115,10 +115,12 @@ allPostContainer.appendChild(allPostCard);
 
   })
 }
-
+let count = 0;
 let newsCount = document.getElementById('news-count');
 const newsContainer = (event,view) =>{
     // console.log(newsContainer);
+    count = count +1;
+    document.getElementById('count-title').innerText = count;
     const readNewsContainer = document.getElementById('all-title');
     const div = document.createElement('div');
     div.classList = `flex p-4 mb-2 gap-2 justify-between bg-white rounded-lg shadow-sm`;

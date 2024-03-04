@@ -16,7 +16,7 @@ const displayRetro = posts =>{
         // console.log(post);
         // 2 create a div
         const postCard = document.createElement('div');
-        postCard.classList = `card card-compact w-96 bg-base-100 shadow-xl p-4 rounded-3xl`;
+        postCard.classList = `card card-compact w-96 bg-base-100 shadow-2xl p-4 rounded-3xl`;
         // 3 set inner html 
         postCard.innerHTML = `
         <figure><img src="${post?.cover_image}" alt="Shoes" /></figure>
@@ -63,7 +63,7 @@ allPostContainer.innerHTML = '';
     // console.log(allPost);
     // create a div
    const allPostCard = document.createElement('div');
-   allPostCard.classList = `card card-side bg-[#F3F3F5] shadow-xl`;
+   allPostCard.classList = `card card-side bg-[#F3F3F5] shadow-2xl`;
 //  set inner html
 
    allPostCard.innerHTML = `
@@ -85,7 +85,7 @@ allPostContainer.innerHTML = '';
         <h2 class="text-lg font-bold">${allPost?.title}</h2>
         <p>${allPost?.description}</p>
         <br>
-       <hr class="w-52 lg:w-[500px]">
+       <img src="./images/Line 1.png" alt="">
         <div class="flex mr-14 gap-10 mt-4">
              <div class="flex gap-1 lg:gap-3">
               <img src="./images/mss.png" alt="">
@@ -123,7 +123,7 @@ const newsContainer = (event,view) =>{
     document.getElementById('count-title').innerText = count;
     const readNewsContainer = document.getElementById('all-title');
     const div = document.createElement('div');
-    div.classList = `flex p-4 mb-2 gap-2 justify-between bg-white rounded-lg shadow-sm`;
+    div.classList = `flex mt-3 p-4 mb-2 gap-2 justify-between bg-white rounded-2xl shadow-xl`;
     div.innerHTML = `
   <p class="flex font-bold">${event}</p>
   <div class="flex items-center">
